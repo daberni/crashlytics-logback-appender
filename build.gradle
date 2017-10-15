@@ -14,10 +14,17 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
+        google()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+// travis-ci test
+task connectedCheck {
+
 }
