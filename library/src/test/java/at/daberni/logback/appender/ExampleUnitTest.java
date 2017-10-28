@@ -1,4 +1,4 @@
-package at.daberni.logback.apender;
+package at.daberni.logback.appender;
 
 import org.junit.Test;
 

@@ -10,7 +10,7 @@
 		</encoder>
 	</appender>
 
-	<appender name="Crashlytics" class="at.daberni.logback.apender.CrashlyticsLogbackAppender">
+	<appender name="Crashlytics" class="at.daberni.logback.appender.CrashlyticsLogbackAppender">
 		<encoder>
 			<pattern>%.-1level %class.%method\(%file:%line\) - %msg%n</pattern>
 		</encoder>

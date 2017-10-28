@@ -6,7 +6,7 @@ import com.crashlytics.android.Crashlytics;
 
 import org.slf4j.LoggerFactory;
 
-import at.daberni.logback.apender.CrashlyticsLogbackAppender;
+import at.daberni.logback.appender.CrashlyticsLogbackAppender;
 import io.fabric.sdk.android.DefaultLogger;
 import io.fabric.sdk.android.Fabric;
 
