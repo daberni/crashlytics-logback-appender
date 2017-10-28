@@ -1,4 +1,15 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 26
@@ -8,7 +19,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "0.1"
+        versionName "0.1.0"
     }
 
     buildTypes {
@@ -36,4 +47,64 @@ dependencies {
     }
 
     testCompile 'junit:junit:4.12'
+}
+
+group "com.github.daberni"
+version android.defaultConfig.versionName
+project.archivesBaseName = 'crashlytics-logback-appender'
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'Crashlytics Logback Appender'
+            description 'Simple logback appender to log to Crashlytics for enhanced crash reports Edit'
+            url 'https://github.com/daberni/crashlytics-logback-apender'
+            inceptionYear '2017'
+
+            packaging 'aar'
+            groupId "com.github.daberni"
+            artifactId "crashlytics-logback-appender"
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/daberni/crashlytics-logback-apender'
+                connection 'scm:git@github.com:daberni/crashlytics-logback-apender.git'
+            }
+            developers {
+                developer {
+                    id "daberni"
+                    name "Bernhard Danecker"
+                    email "bernhard.danecker@gmail.com"
+                }
+            }
+        }
+    }
+}
+
+bintray {
+    user = project.property("bintray.user")
+    key = project.property("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = 'oss'
+        name = 'crashlytics-logback-appender'
+        description 'Simple logback appender to log to Crashlytics for enhanced crash reports Edit'
+        websiteUrl = 'https://github.com/daberni/crashlytics-logback-apender'
+        vcsUrl = 'https://github.com/daberni/crashlytics-logback-apender.git'
+        licenses = ['Apache-2.0']
+        publish = true
+        version {
+            name = android.defaultConfig.versionName
+            gpg {
+                sign = true
+                passphrase = project.property("bintray.gpg.password")
+            }
+        }
+    }
 }
