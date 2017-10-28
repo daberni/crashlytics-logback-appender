@@ -24,3 +24,8 @@ install:
   - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
   - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
   - echo "apiKey=$FABRIC_API_KEY" > app/fabric.properties
+  - echo "sonatypeUser=$SONATYPE_USER" >> gradle.properties
+  - echo "sonatypePassword=$SONATYPE_PASSWORD" >> gradle.properties
+
+after_success:
+  - ./gradlew publish

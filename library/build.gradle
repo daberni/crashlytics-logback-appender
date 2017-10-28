@@ -1,4 +1,13 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'digital.wup:android-maven-publish:3.1.0'
+    }
+}
 apply plugin: 'com.android.library'
+apply plugin: 'digital.wup.android-maven-publish'
 
 android {
     compileSdkVersion 26
@@ -8,7 +17,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "0.1"
+        versionName "0.1.0-SNAPSHOT"
     }
 
     buildTypes {
@@ -36,4 +45,53 @@ dependencies {
     }
 
     testCompile 'junit:junit:4.12'
+}
+
+publishing {
+    publications {
+        mavenAar(MavenPublication) {
+            groupId "com.github.daberni"
+            artifactId "crashlytics-logback-appender"
+            version android.defaultConfig.versionName
+
+            pom.withXml {
+                asNode().children().last() + {
+                    resolveStrategy = DELEGATE_FIRST
+
+                    name 'Crashlytics Logback Appender'
+                    description 'Simple logback appender to log to Crashlytics for enhanced crash reports Edit'
+                    licenses {
+                        license {
+                            name "The Apache Software License, Version 2.0"
+                            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                            distribution 'repo'
+                        }
+                    }
+                    scm {
+                        url 'https://github.com/daberni/crashlytics-logback-apender.git'
+                        connection 'scm:git@github.com:daberni/crashlytics-logback-apender.git'
+                        developerConnection 'scm:git@github.com:me/my-repo.git'
+                    }
+                    developers {
+                        developer {
+                            id "daberni"
+                            name "Bernhard Danecker"
+                            email "bernhard.danecker@gmail.com"
+                        }
+                    }
+                }
+            }
+
+            from components.android
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username sonatypeUser
+                password sonatypePassword
+            }
+            url android.defaultConfig.versionName.endsWith("-SNAPSHOT") ? "https://oss.sonatype.org/content/repositories/snapshots" : "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+        }
+    }
 }
