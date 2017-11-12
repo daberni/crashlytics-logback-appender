@@ -9,16 +9,12 @@ android {
         targetSdkVersion 26
         versionName "0.2.2"
         versionCode 4
+
+        consumerProguardFiles 'proguard-android.txt'
     }
 
     buildTypes {
-        debug {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
