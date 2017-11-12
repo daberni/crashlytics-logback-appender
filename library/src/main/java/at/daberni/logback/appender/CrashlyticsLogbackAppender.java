@@ -11,8 +11,6 @@ import ch.qos.logback.core.AppenderBase;
 
 public class CrashlyticsLogbackAppender extends AppenderBase<ILoggingEvent> {
 
-    private static final int LOG_LEVEL_NONE = 0;
-
     private PatternLayoutEncoder encoder;
 
     @SuppressWarnings("unused")
