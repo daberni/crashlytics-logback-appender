@@ -24,3 +24,13 @@ install:
   - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
   - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
   - echo "apiKey=$FABRIC_API_KEY" > app/fabric.properties
+  - echo "bintray.user=$BINTRAY_USER" >> gradle.properties
+  - echo "bintray.apikey=$BINTRAY_API_KEY" >> gradle.properties
+  - echo "bintray.gpg.password=$BINTRAY_GPG_PASSWORD" >> gradle.properties
+
+deploy:
+  provider: script
+  script: ./gradlew publish
+  on:
+    skip_cleanup: true
+    tags: true
