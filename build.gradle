@@ -27,7 +27,7 @@ task connectedCheck {
 
 }
 
-task publish(type: Exec, dependsOn: 'bintrayUpload')
+task publish(dependsOn: 'library:bintrayUpload')
 
 configure(publish) {   
     group = 'Publishing'
