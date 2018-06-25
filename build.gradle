@@ -26,3 +26,10 @@ task clean(type: Delete) {
 task connectedCheck {
 
 }
+
+task publish(type: Exec, dependsOn: 'bintrayUpload')
+
+configure(publish) {   
+    group = 'Publishing'
+    description = 'Publish library artifacts'
+}
