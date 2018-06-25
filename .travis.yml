@@ -27,5 +27,8 @@ install:
   - echo "sonatypeUser=$SONATYPE_USER" >> gradle.properties
   - echo "sonatypePassword=$SONATYPE_PASSWORD" >> gradle.properties
 
-after_success:
-  - ./gradlew publish
+deploy:
+  provider: script
+  script: ./gradlew publish
+  on:
+    tags: true
