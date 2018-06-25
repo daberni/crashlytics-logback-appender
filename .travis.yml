@@ -31,4 +31,5 @@ deploy:
   provider: script
   script: ./gradlew publish
   on:
+    skip_cleanup: true
     tags: true
