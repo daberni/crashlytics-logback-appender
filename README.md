@@ -20,12 +20,28 @@ public class AppApplication extends Application {
     
     @Override
     public void onCreate() {
-          super.onCreate();
+        super.onCreate();
 
-          Fabric.with(this, new Crashlytics());          
-          CrashlyticsLogbackAppender.setup();
+        Fabric.with(this, new Crashlytics());
+        CrashlyticsLogbackAppender.setup();
     }
 }
+```
+
+And don't forget the appender in your logback configuration!
+```xml
+<configuration>
+	<appender name="Crashlytics" class="at.daberni.logback.appender.CrashlyticsLogbackAppender">
+		<encoder>
+			<pattern>%class.%method\(%file:%line\) - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="DEBUG">
+		<appender-ref ref="Crashlytics"/>
+	</root>
+
+</configuration>
 ```
 
 ## License
