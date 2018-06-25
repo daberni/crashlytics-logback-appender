@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/daberni/crashlytics-logback-appender.svg?branch=master)](https://travis-ci.org/daberni/crashlytics-logback-appender)
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.daberni/crashlytics-logback-appender.svg)](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22crashlytics-logback-appender%22)
+[![JCenter](https://api.bintray.com/packages/daberni/oss/crashlytics-logback-appender/images/download.svg)](https://bintray.com/daberni/oss/crashlytics-logback-appender)
 
 # Crashlytics Logback Appender
 
@@ -8,18 +8,21 @@ Simple logback appender to log to Crashlytics for enhanced crash reports.
 ## Usage
 
 Add as dependency in your `build.gradle` file:
+
 ```
-compile 'com.github.daberni:crashlytics-logback-appender:0.1.0'
+implementation 'com.github.daberni:crashlytics-logback-appender:0.2.3'
 ```
 
 After setting up Fabric/Crashlytics you have to setup the appender for correct logging.
 
 ```java
-class AppApplication extends Application {
+public class AppApplication extends Application {
     
-    void onCreate() {
-          Fabric.with(this, new Crashlytics());
-          
+    @Override
+    public void onCreate() {
+          super.onCreate();
+
+          Fabric.with(this, new Crashlytics());          
           CrashlyticsLogbackAppender.setup();
     }
 }
