@@ -29,6 +29,6 @@ install:
 deploy:
   provider: script
   script: ./gradlew publish
-    skip_cleanup: true
+  skip_cleanup: true
   on:
     tags: true
