@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
-        versionName "0.2.3"
-        versionCode 5
+        targetSdkVersion 27
+        versionName "0.2.4"
+        versionCode 6
 
         consumerProguardFiles 'proguard-android.txt'
     }
@@ -26,12 +25,9 @@ android {
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.25'
-    compile('com.github.tony19:logback-android-classic:1.1.1-6') {
-        // workaround issue #73
-        exclude group: 'com.google.android', module: 'android'
-    }
-    compile('com.crashlytics.sdk.android:crashlytics:2.7.0@aar') {
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation('com.github.tony19:logback-android:1.1.1-12')
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
         transitive = true
     }
 
