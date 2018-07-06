@@ -42,7 +42,7 @@ dependencies {
         transitive = true
     }
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
 group "com.github.daberni"
@@ -53,13 +53,13 @@ install {
     repositories.mavenInstaller {
         pom.project {
             name 'Crashlytics Logback Appender'
-            description 'Simple logback appender to log to Crashlytics for enhanced crash reports Edit'
+            description 'Simple logback appender to log to Crashlytics for enhanced crash reports'
             url 'https://github.com/daberni/crashlytics-logback-apender'
             inceptionYear '2017'
 
             packaging 'aar'
-            groupId "com.github.daberni"
-            artifactId "crashlytics-logback-appender"
+            groupId project.group
+            artifactId project.archivesBaseName
 
             licenses {
                 license {
@@ -89,18 +89,14 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = 'oss'
-        name = 'crashlytics-logback-appender'
-        description 'Simple logback appender to log to Crashlytics for enhanced crash reports Edit'
+        name = project.archivesBaseName
+        description 'Simple logback appender to log to Crashlytics for enhanced crash reports'
         websiteUrl = 'https://github.com/daberni/crashlytics-logback-apender'
         vcsUrl = 'https://github.com/daberni/crashlytics-logback-apender.git'
         licenses = ['Apache-2.0']
         publish = true
         version {
-            name = android.defaultConfig.versionName
-            gpg {
-                sign = true
-                passphrase = project.property("bintray.gpg.password")
-            }
+            name = project.version
         }
     }
 }
