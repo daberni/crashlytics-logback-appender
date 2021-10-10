@@ -5,6 +5,10 @@
 
 Simple logback appender to log to Crashlytics for enhanced crash reports.
 
+# ! Archived ! #
+
+Archived due to Fabric Crashlytics beeing superseded by Firebase Crashlytics, see https://github.com/finki001/firebase-crashlytics-logback-appender for same functionality.
+
 ## Usage
 
 Add as dependency in your `build.gradle` file:
